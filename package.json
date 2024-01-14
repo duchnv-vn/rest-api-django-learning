@@ -1,0 +1,12 @@
+{
+  "name": "recipe-api-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "cd ./scripts && init.bat",
+    "commit": "bash ./scripts/commit.sh"
+  },
+  "author": "duchnv-vn",
+  "license": "ISC"
+}
