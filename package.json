@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "init": "cd ./scripts && init.bat",
+    "init": "bash ./scripts/init.sh",
     "commit": "bash ./scripts/commit.sh"
   },
   "author": "duchnv-vn",
