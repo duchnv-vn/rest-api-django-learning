@@ -6,9 +6,8 @@
   "scripts": {
     "init": "bash ./scripts/init.sh",
     "commit": "bash ./scripts/commit.sh",
-    "app:db:wait": "python manage.py wait_for_db",
-    "app:run": "docker-compose run --rm app sh -c 'python manage.py startapp core'",
-    "app:test": "docker-compose run --rm app sh -c 'python manage.py test'",
+    "app:run": "docker-compose run --rm app sh -c 'python manage.py wait_for_db && python manage.py startapp core'",
+    "app:test": "docker-compose run --rm app sh -c 'python manage.py wait_for_db && python manage.py test'",
     "con:rm": "docker-compose down",
     "con:create": "docker-compose build",
     "con:run": "docker-compose up",
