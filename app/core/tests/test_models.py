@@ -37,3 +37,21 @@ class MOdelTest(TestCase):
             )
 
             self.assertEqual(user.email, expected)
+
+    def test_new_user_without_email_raises_error(self):
+        """ Test creating non-email user will raises ValueError """
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(
+                email='',
+                password='123456'
+            )
+
+    def test_create_superuser(self):
+        """ Test creating superuser """
+        user = get_user_model().objects.create_superuser(
+            email='test@example.com',
+            password='123456'
+        )
+
+        self.assertTrue(user.is_superuser)
+        self.assertTrue(user.is_staff)
