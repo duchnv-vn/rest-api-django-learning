@@ -13,7 +13,10 @@ class MOdelTest(TestCase):
         """Test creating a user with an email is successful"""
         email = "test@example.com"
         password = "123456"
-        user = get_user_model().objects.create_user(email=email, password=password)
+        user = get_user_model().objects.create_user(
+            email=email,
+            password=password
+        )
         user.check()
         self.assertEqual(user.email, email)
         self.assertTrue(user.check_password(password))
