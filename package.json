@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "init": "bash ./scripts/init.sh",
-    "commit": "bash ./scripts/commit.sh"
+    "commit": "bash ./scripts/commit.sh",
+    "app:db:wait": "python manage.py wait_for_db",
+    "app:run": "docker-compose run --rm app sh -c 'python manage.py startapp core'",
+    "app:test": "docker-compose run --rm app sh -c 'python manage.py test'",
+    "con:rm": "docker-compose down",
+    "con:create": "docker-compose build",
+    "con:run": "docker-compose up",
+    "lint": "docker-compose run --rm app sh -c 'flake8'"
   },
   "author": "duchnv-vn",
   "license": "ISC"
