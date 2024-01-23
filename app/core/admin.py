@@ -10,8 +10,11 @@ from core import models
 
 class UserAdmin(BaseUserAdmin):
     """ Define the admin pages for users """
+    # Set fields displayed in table of list page
     ordering = ['id']
     list_display = ['email', 'name']
+
+    # Set fields displayed in edit page
     fieldsets = (
         (
             None,
@@ -52,6 +55,27 @@ class UserAdmin(BaseUserAdmin):
     )
 
     readonly_fields = ['last_login']
+
+    # Set fields displayed in create page
+    add_fieldsets = (
+        (
+            None,
+            {
+                'classes': (
+                    'wide',
+                ),
+                'fields': (
+                    'email',
+                    'password1',
+                    'password2',
+                    'name',
+                    'is_active',
+                    'is_staff',
+                    'is_superuser',
+                )
+            }
+        ),
+    )
 
 
 admin.site.register(models.User, UserAdmin)
