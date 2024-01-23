@@ -7,7 +7,7 @@
     "init": "bash ./scripts/init.sh",
     "commit": "bash ./scripts/commit.sh",
     "lint": "docker-compose run --rm app sh -c 'flake8'",
-    "app:start:core": "bash ./scripts/app/app-start-core.sh",
+    "app:new": "bash ./scripts/app/new-app-start.sh",
     "app:test": "bash ./scripts/app/app-test.sh",
     "con:rm": "docker-compose down",
     "con:create": "docker-compose build",
