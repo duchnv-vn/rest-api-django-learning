@@ -5,5 +5,6 @@ API_ENDPOINTS = {
         'base': 'user/',
         'create': 'create/',
         'token': 'token/',
+        'me': 'me/',
     }
 }
