@@ -22,14 +22,15 @@
 
 ## Project structure
 
-### App
+### Apps:
 
 - `app/` : Django project
 - `app/core/` : Codes shared between multiple apps
 - `app/user/` : User related codes
 - `app/recipe/` : Recipe related codes
+- `app/tag/` : Tag related codes
 
-### Features:
+### APIs:
 
 1. User:
 
@@ -40,8 +41,40 @@
 
 2. Recipe:
 
-- Create recipe: POST - /api/recipes
-- List recipe: GET - /api/recipes
-- View detail recipe: GET - /api/recipes/:id
-- Update recipe: PATCH PUT - /api/recipes/:id
-- Delete recipe: DELETE - /api/recipes/:id
+- Create recipe: POST - /api/recipe/recipe
+- List recipe: GET - /api/recipe/recipe
+- View detail recipe: GET - /api/recipe/recipe/:id
+- Update recipe: PATCH PUT - /api/recipe/recipe/:id
+- Delete recipe: DELETE - /api/recipe/recipe/:id
+
+3. Tag:
+
+- Create a tag: POST - /api/recipe/tags
+- Update tags: PUT PATCH - /api/recipe/tags
+- Delete a tag: DELETE - /api/recipe/tags
+- List available tags: GET - /api/recipe/tags
+
+### Models:
+
+1. User:
+
+- email: varchar255
+- password: varchar255
+- name: varchar255
+- is_active: boolean
+- is_staff: boolean
+
+2. Recipe:
+
+- id: int
+- user: User
+- title: varchar255
+- description: text
+- time_minutes: int
+- price: decimal(5,2)
+- link: varchar255
+
+3. Tag
+
+- name: varchar255
+- user: User
