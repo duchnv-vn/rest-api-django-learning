@@ -10,5 +10,8 @@ API_ENDPOINTS = {
     'recipe': {
         'base': 'recipe/',
         'list': 'recipe-list/',
+    },
+    'tag': {
+        'base': 'tag/',
     }
 }

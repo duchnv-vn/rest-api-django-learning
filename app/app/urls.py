@@ -41,4 +41,8 @@ urlpatterns = [
         'api/' + API_ENDPOINTS['recipe']['base'],
         include('recipe.urls')
     ),
+    path(
+        'api/' + API_ENDPOINTS['tag']['base'],
+        include('tag.urls')
+    ),
 ]
