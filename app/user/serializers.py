@@ -1,5 +1,5 @@
 """
-Serializzers for user API view
+Serializers for user API view
 """
 from django.contrib.auth import (
     get_user_model,
@@ -38,7 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 
-class AuthenTokenSerializer(serializers.Serializer):
+class AuthTokenSerializer(serializers.Serializer):
     """ Serializer for user auth token """
     email = serializers.EmailField()
     password = serializers.CharField(

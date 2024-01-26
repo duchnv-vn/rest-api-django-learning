@@ -6,5 +6,9 @@ API_ENDPOINTS = {
         'create': 'create/',
         'token': 'token/',
         'me': 'me/',
+    },
+    'recipe': {
+        'base': 'recipe/',
+        'list': 'recipe-list/',
     }
 }
