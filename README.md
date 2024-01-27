@@ -41,18 +41,18 @@
 
 2. Recipe:
 
-- Create recipe: POST - /api/recipe/recipe
-- List recipe: GET - /api/recipe/recipe
-- View detail recipe: GET - /api/recipe/recipe/:id
-- Update recipe: PATCH PUT - /api/recipe/recipe/:id
-- Delete recipe: DELETE - /api/recipe/recipe/:id
+- Create recipe: POST - /api/recipe
+- List recipe: GET - /api/recipe
+- View detail recipe: GET - /api/recipe/:id
+- Update recipe: PATCH PUT - /api/recipe/:id
+- Delete recipe: DELETE - /api/recipe/:id
 
 3. Tag:
 
-- Create a tag: POST - /api/recipe/tags
-- Update tags: PUT PATCH - /api/recipe/tags
-- Delete a tag: DELETE - /api/recipe/tags
-- List available tags: GET - /api/recipe/tags
+- Create a tag: POST - /api/tags
+- Update tags: PUT PATCH - /api/tags
+- Delete a tag: DELETE - /api/tags
+- List available tags: GET - /api/tags
 
 ### Models:
 
