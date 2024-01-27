@@ -29,34 +29,41 @@
 - `app/user/` : User related codes
 - `app/recipe/` : Recipe related codes
 - `app/tag/` : Tag related codes
+- `app/ingredient/` : Ingredient related codes
 
 ### APIs:
 
-1. User:
+1. `Users`:
 
+- Manage user GET - /api/user/me
 - Create user: POST - /api/user/create
 - Get token POST - /api/user/token
-- Manage user GET - /api/user/me
 - Update user PATCH PUT - /api/user/me
 
-2. Recipe:
+2. `Recipes`:
 
-- Create recipe: POST - /api/recipe
 - List recipe: GET - /api/recipe
 - View detail recipe: GET - /api/recipe/:id
+- Create recipe: POST - /api/recipe
 - Update recipe: PATCH PUT - /api/recipe/:id
-- Delete recipe: DELETE - /api/recipe/:id
+- Delete recipe: DELETE - /api/recipe/:recipe_id
 
-3. Tag:
+3. `Tags`:
 
-- Create a tag: POST - /api/tags
-- Update tags: PUT PATCH - /api/tags
-- Delete a tag: DELETE - /api/tags
 - List available tags: GET - /api/tags
+- Update tags: PUT PATCH - /api/tags/:tag_id
+- Delete a tag: DELETE - /api/tags/:tag_id
+
+4. `Ingredients`:
+
+- List available ingredients: GET - /api/ingredients
+- Ingredient detail: GET - /api/ingredients/:tag_id
+- Update a ingredient: PUT PATCH - /api/ingredients/:tag_id
+- Delete a ingredient: DELETE - /api/ingredients/:tag_id
 
 ### Models:
 
-1. User:
+1. `Users`:
 
 - email: varchar255
 - password: varchar255
@@ -64,7 +71,7 @@
 - is_active: boolean
 - is_staff: boolean
 
-2. Recipe:
+2. `Recipes`:
 
 - id: int
 - user: User
@@ -74,7 +81,12 @@
 - price: decimal(5,2)
 - link: varchar255
 
-3. Tag
+3. `Tags`
+
+- name: varchar255
+- user: User
+
+4. `Ingredients`
 
 - name: varchar255
 - user: User
