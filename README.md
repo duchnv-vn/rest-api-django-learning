@@ -35,18 +35,18 @@
 
 1. `Users`:
 
-- Manage user GET - /api/user/me
-- Create user: POST - /api/user/create
-- Get token POST - /api/user/token
-- Update user PATCH PUT - /api/user/me
+- Manage user GET - /api/users/me
+- Create user: POST - /api/users/create
+- Get token POST - /api/users/token
+- Update user PATCH PUT - /api/users/me
 
 2. `Recipes`:
 
-- List recipe: GET - /api/recipe
-- View detail recipe: GET - /api/recipe/:id
-- Create recipe: POST - /api/recipe
-- Update recipe: PATCH PUT - /api/recipe/:id
-- Delete recipe: DELETE - /api/recipe/:recipe_id
+- List recipe: GET - /api/recipes
+- View detail recipe: GET - /api/recipes/:id
+- Create recipe: POST - /api/recipes
+- Update recipe: PATCH PUT - /api/recipes/:id
+- Delete recipe: DELETE - /api/recipes/:recipe_id
 
 3. `Tags`:
 
