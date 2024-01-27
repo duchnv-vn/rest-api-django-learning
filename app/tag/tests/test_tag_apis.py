@@ -93,9 +93,8 @@ class PrivateTagApisTests(TestCase):
             'name': 'Updated tag 1',
         }
         url = detail_url(tag.id)
-        res = self.client.patch(url, payload)
+        self.client.patch(url, payload)
         tag.refresh_from_db()
-
         self.assertEqual(tag.name, payload['name'])
 
     def test_delete_tag(self):
