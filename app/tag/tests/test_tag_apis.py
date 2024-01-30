@@ -21,7 +21,7 @@ def detail_url(tag_id):
 def create_user(**params):
     """ Create and return a new user """
     defaults = {
-        'email': 'other@example.com',
+        'email': 'user@example.com',
         'password': '12345678',
     }
     defaults.update(params)
@@ -82,7 +82,6 @@ class PrivateTagApisTests(TestCase):
 
         tags = Tag.objects.filter(user=self.user)
         serializer = TagSerializer(tags, many=True)
-
         self.assertEqual(res.data, serializer.data)
 
     def test_update_tag(self):

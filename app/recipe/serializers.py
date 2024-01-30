@@ -5,6 +5,7 @@ from rest_framework import serializers
 from core.models import (
     Recipe,
     Tag,
+    Ingredient,
 )
 from tag.serializers import TagSerializer
 
@@ -28,12 +29,25 @@ class RecipeSerializer(serializers.ModelSerializer):
             )
             recipe.tags.add(tag_obj)
 
+    def _get_or_create_ingredients(self, ingredients, recipe):
+        """ Get or create ingredients """
+        auth_user = self.context['request'].user
+        for ingredient in ingredients:
+            ingredient_obj = Ingredient.objects.get_or_create(
+                user=auth_user,
+                **ingredient,
+            )
+            recipe.ingredients.add(ingredient_obj)
+
     def create(self, validated_data):
         """ Create a recipe """
         tags = validated_data.pop('tags', [])
+        ingredients = validated_data.pop('ingredients', [])
+        print('ingredients', ingredients)
 
         recipe = Recipe.objects.create(**validated_data)
         self._get_or_create_tags(tags, recipe)
+        self._get_or_create_ingredients(ingredients, recipe)
 
         return recipe
 

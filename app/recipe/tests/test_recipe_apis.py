@@ -222,8 +222,6 @@ class PrivateRecipeApisTests(TestCase):
                 {'name': 'Tag 2'},
             ]
         }
-        # tag_1 = Tag.objects.create(name="Tag 1", user=self.user)
-        # tag_2 = Tag.objects.create(name="Tag 2", user=self.user)
 
         res = self.client.post(RECIPES_URL, payload, format='json')
 
@@ -236,7 +234,7 @@ class PrivateRecipeApisTests(TestCase):
                 recipes[0].tags
                 .filter(
                     name=tag['name'],
-                    user=self.user
+                    user=self.user,
                 ).exists()
             )
 
@@ -322,3 +320,45 @@ class PrivateRecipeApisTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(recipe.tags.count(), 0)
+
+    def test_create_recipe_with_new_ingredients(self):
+        """ Test create recipe with new ingredients """
+        payload = {
+            'title': 'Sample recipe title',
+            'time_minutes': 20,
+            'price': Decimal('5.25'),
+            'description': 'Sample recipe description',
+            'link': 'https:/example.com/recipe.pdf',
+            'ingredients': [
+                {'name': 'Ingredient 1'},
+                {'name': 'Ingredient 2'},
+            ]
+        }
+
+        res = self.client.post(RECIPES_URL, payload, format='json')
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        recipes = Recipe.objects.filter(user=self.user)
+        self.assertEqual(recipes.count(), 1)
+        self.assertEqual(recipes[0].ingredients.count(), 2)
+        for ingredient in payload['ingredients']:
+            self.assertEqual(
+                recipes[0].ingredients
+                .filter(
+                    name=ingredient['name'],
+                    user=self.user,
+                )
+                .exists()
+            )
+
+    def test_create_recipe_with_existing_ingredients(self):
+        """ Test create recipe with existing ingredients"""
+
+    def test_create_ingredients_on_update(self):
+        """ Test create ingredients on update recipe"""
+
+    def test_update_recipe_assign_ingredients(self):
+        """ Test update recipe for assign ingredients"""
+
+    def test_clear_recipe_ingredients(self):
+        """ Test clear all ingredients of a recipe"""
