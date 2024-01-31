@@ -19,6 +19,8 @@ from recipe.serializers import (
     RecipeDetailSerializer,
 )
 
+from ingredient.serializers import IngredientSerializer
+
 RECIPES_URL = reverse('recipe:recipe-list')
 
 
@@ -249,7 +251,7 @@ class PrivateRecipeApisTests(TestCase):
             'description': 'Sample recipe description',
             'link': 'https:/example.com/recipe.pdf',
             'tags': [
-                tag_1,
+                {'name': 'Tag 1'},
                 {'name': 'Tag 2'},
             ]
         }
@@ -355,7 +357,7 @@ class PrivateRecipeApisTests(TestCase):
     def test_create_recipe_with_existing_ingredients(self):
         """ Test create recipe with existing ingredients"""
         ingredient = Ingredient.objects.create(
-            name="Ingredient 11",
+            name="Ingredient 1",
             user=self.user,
         )
 
@@ -366,8 +368,8 @@ class PrivateRecipeApisTests(TestCase):
             'description': 'Sample recipe description',
             'link': 'https:/example.com/recipe.pdf',
             'ingredients': [
-                ingredient,
-                {'name': 'Ingredient 22'},
+                {'name': 'Ingredient 1'},
+                {'name': 'Ingredient 2'},
             ]
         }
 
