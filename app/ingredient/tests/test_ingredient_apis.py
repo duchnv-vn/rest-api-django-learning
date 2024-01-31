@@ -67,7 +67,7 @@ class PrivateIngredientApisTest(TestCase):
         self.assertEqual(res.data, serializer.data)
 
     def test_retrieve_ingredients_limited_to_user(self):
-        """ Test retrieve ingredients limited to authenticated user successfully """
+        """ Test retrieve ingredients limited to authenticated user """
         other_user = create_user(
             email='other@example.com',
             password='12345678'
