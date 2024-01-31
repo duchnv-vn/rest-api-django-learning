@@ -12,6 +12,7 @@ from rest_framework import status
 from core.models import (
     Recipe,
     Tag,
+    Ingredient,
 )
 from recipe.serializers import (
     RecipeSerializer,
@@ -353,6 +354,38 @@ class PrivateRecipeApisTests(TestCase):
 
     def test_create_recipe_with_existing_ingredients(self):
         """ Test create recipe with existing ingredients"""
+        ingredient = Ingredient.objects.create(
+            name="Ingredient 11",
+            user=self.user,
+        )
+
+        payload = {
+            'title': 'Sample recipe title',
+            'time_minutes': 20,
+            'price': Decimal('5.25'),
+            'description': 'Sample recipe description',
+            'link': 'https:/example.com/recipe.pdf',
+            'ingredients': [
+                ingredient,
+                {'name': 'Ingredient 22'},
+            ]
+        }
+
+        res = self.client.post(RECIPES_URL, payload, format='json')
+
+        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        recipes = Recipe.objects.filter(user=self.user)
+        self.assertEqual(recipes.count(), 1)
+        self.assertEqual(recipes[0].ingredients.count(), 2)
+        self.assertIn(ingredient, recipes[0].ingredients.all())
+        for ingredientPayload in payload['ingredients']:
+            self.assertTrue(
+                recipes[0].ingredients
+                .filter(
+                    name=ingredientPayload['name'],
+                    user=self.user,
+                ).exists()
+            )
 
     def test_create_ingredients_on_update(self):
         """ Test create ingredients on update recipe"""
