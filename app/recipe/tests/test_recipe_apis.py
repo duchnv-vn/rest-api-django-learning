@@ -342,7 +342,7 @@ class PrivateRecipeApisTests(TestCase):
         self.assertEqual(recipes.count(), 1)
         self.assertEqual(recipes[0].ingredients.count(), 2)
         for ingredient in payload['ingredients']:
-            self.assertEqual(
+            self.assertTrue(
                 recipes[0].ingredients
                 .filter(
                     name=ingredient['name'],

@@ -12,6 +12,15 @@ from core.models import (
 )
 
 
+def create_user(**params):
+    payload = {
+        'email': 'test@example.com',
+        'password': '12345678'
+    }
+    payload.update(params)
+    return get_user_model().objects.create_user(**params)
+
+
 class ModelTests(TestCase):
     """Test models"""
 
@@ -19,9 +28,9 @@ class ModelTests(TestCase):
         """Test creating a user with an email is successful"""
         email = "test@example.com"
         password = "123456"
-        user = get_user_model().objects.create_user(
+        user = create_user(
             email=email,
-            password=password
+            password=password,
         )
 
         self.assertEqual(user.email, email)
@@ -37,7 +46,7 @@ class ModelTests(TestCase):
         ]
 
         for email, expected in sample_emails:
-            user = get_user_model().objects.create_user(
+            user = create_user(
                 email=email,
                 password='123456'
             )
@@ -47,7 +56,7 @@ class ModelTests(TestCase):
     def test_new_user_without_email_raises_error(self):
         """ Test creating non-email user will raises ValueError """
         with self.assertRaises(ValueError):
-            get_user_model().objects.create_user(
+            create_user(
                 email='',
                 password='123456'
             )
@@ -64,7 +73,7 @@ class ModelTests(TestCase):
 
     def test_create_recipe(self):
         """ Test create a recipe successfully """
-        user = get_user_model().objects.create_user(
+        user = create_user(
             email="test@example.com",
             password="123456"
         )
@@ -81,7 +90,7 @@ class ModelTests(TestCase):
 
     def test_create_tag(self):
         """ Test create a tag successfully """
-        user = get_user_model().objects.create_user(
+        user = create_user(
             email="test@example.com",
             password="123456"
         )
@@ -95,7 +104,7 @@ class ModelTests(TestCase):
 
     def test_create_ingredient(self):
         """ Test create a ingredient successfully """
-        user = get_user_model().objects.create_user(
+        user = create_user(
             email="test@example.com",
             password="123456"
         )

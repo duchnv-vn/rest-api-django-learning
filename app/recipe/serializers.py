@@ -8,15 +8,25 @@ from core.models import (
     Ingredient,
 )
 from tag.serializers import TagSerializer
+from ingredient.serializers import IngredientSerializer
 
 
 class RecipeSerializer(serializers.ModelSerializer):
     """ Serializer for recipe object """
     tags = TagSerializer(many=True, required=False)
+    ingredients = IngredientSerializer(many=True, required=False)
 
     class Meta:
         model = Recipe
-        fields = ['id', 'title', 'time_minutes', 'price', 'link', 'tags']
+        fields = [
+            'id',
+            'title',
+            'time_minutes',
+            'price',
+            'link',
+            'tags',
+            'ingredients',
+        ]
         read_only_fields = ['id']
 
     def _get_or_create_tags(self, tags, recipe):
@@ -33,7 +43,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         """ Get or create ingredients """
         auth_user = self.context['request'].user
         for ingredient in ingredients:
-            ingredient_obj = Ingredient.objects.get_or_create(
+            ingredient_obj, created = Ingredient.objects.get_or_create(
                 user=auth_user,
                 **ingredient,
             )
@@ -43,7 +53,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         """ Create a recipe """
         tags = validated_data.pop('tags', [])
         ingredients = validated_data.pop('ingredients', [])
-        print('ingredients', ingredients)
 
         recipe = Recipe.objects.create(**validated_data)
         self._get_or_create_tags(tags, recipe)
@@ -54,9 +63,15 @@ class RecipeSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         """ Update a recipe """
         tags = validated_data.pop('tags', None)
+        ingredients = validated_data.pop('ingredients', None)
+
         if tags is not None:
             instance.tags.clear()
             self._get_or_create_tags(tags, instance)
+
+        if ingredients is not None:
+            instance.ingredients.clear()
+            self._get_or_create_ingredients(ingredients, instance)
 
         for key, value in validated_data.items():
             setattr(instance, key, value)
