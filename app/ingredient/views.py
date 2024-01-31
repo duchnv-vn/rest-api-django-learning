@@ -9,16 +9,14 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from core.models import Ingredient
 from ingredient.serializers import IngredientSerializer
+from common.views.tag_ingredient import BaseAuthenticatedTagAndIngredientViewSet
 
 
 class IngredientViewSet(
-    mixins.DestroyModelMixin,
-    mixins.UpdateModelMixin,
+    BaseAuthenticatedTagAndIngredientViewSet,
     mixins.RetrieveModelMixin,
-    mixins.ListModelMixin,
-    viewsets.GenericViewSet,
 ):
-    """ view for manage ingredient APIs """
+    """ View for manage ingredient APIs """
     serializer_class = IngredientSerializer
     queryset = Ingredient.objects.all()
     authentication_classes = [TokenAuthentication]

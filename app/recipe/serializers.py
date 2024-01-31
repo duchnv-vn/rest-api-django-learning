@@ -33,7 +33,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         """ Get or create tags """
         auth_user = self.context['request'].user
         for tag in tags:
-            tag_obj, created = Tag.objects.get_or_create(
+            tag_obj, is_created = Tag.objects.get_or_create(
                 user=auth_user,
                 **tag,
             )
@@ -43,7 +43,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         """ Get or create ingredients """
         auth_user = self.context['request'].user
         for ingredient in ingredients:
-            ingredient_obj, created = Ingredient.objects.get_or_create(
+            ingredient_obj, is_created = Ingredient.objects.get_or_create(
                 user=auth_user,
                 **ingredient,
             )
