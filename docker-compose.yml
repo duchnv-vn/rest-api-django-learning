@@ -23,7 +23,9 @@ services:
       - DB_HOST=db
       - DB_NAME=devdb
       - DB_USER=devuser
-      - DB_PASSWORD=123456
+      - DB_PASSWORD=changeme
+      - DEBUG=1
+
   db:
     image: postgres:13-alpine
     volumes:
@@ -31,7 +33,7 @@ services:
     environment:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
-      - POSTGRES_PASSWORD=123456
+      - POSTGRES_PASSWORD=changeme
 
 volumes:
   dev-db-data:
