@@ -10,7 +10,7 @@
     "app:new": "bash ./scripts/app/new-app-start.sh",
     "app:test": "bash ./scripts/app/app-test.sh",
     "con:rm": "docker-compose down",
-    "con:create": "docker-compose build",
+    "con:build": "docker-compose build",
     "con:run": "docker-compose up",
     "db:migration": "bash ./scripts/db/migration.sh",
     "db:migrate": "bash ./scripts/db/migrate.sh",

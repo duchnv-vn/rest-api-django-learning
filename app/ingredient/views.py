@@ -1,15 +1,13 @@
 """
 Views for ingredient APIs
 """
-from rest_framework import (
-    mixins,
-    viewsets
-)
+from rest_framework import mixins
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from core.models import Ingredient
 from ingredient.serializers import IngredientSerializer
-from common.views.tag_ingredient import BaseAuthenticatedTagAndIngredientViewSet
+from common.views.tag_ingredient \
+    import BaseAuthenticatedTagAndIngredientViewSet
 
 
 class IngredientViewSet(

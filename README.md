@@ -61,6 +61,10 @@
 - Update a ingredient: PUT PATCH - /api/ingredients/:tag_id
 - Delete a ingredient: DELETE - /api/ingredients/:tag_id
 
+5. `Images`:
+
+- Upload image: POST - /api/recipe/:recipe_id/upload-image
+
 ### Models:
 
 1. `Users`:

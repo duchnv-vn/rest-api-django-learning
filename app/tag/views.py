@@ -1,15 +1,12 @@
 """
 Views for tag APIs
 """
-from rest_framework import (
-    viewsets,
-    mixins,
-)
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from tag.serializers import TagSerializer
 from core.models import Tag
-from common.views.tag_ingredient import BaseAuthenticatedTagAndIngredientViewSet
+from common.views.tag_ingredient \
+    import BaseAuthenticatedTagAndIngredientViewSet
 
 
 class TagViewSet(BaseAuthenticatedTagAndIngredientViewSet):
