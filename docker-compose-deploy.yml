@@ -34,7 +34,7 @@ services:
       context: ./proxy
     restart: always
     ports:
-      - 8000:8000
+      - 22:8000
     volumes:
       - static-data:/vol/static
 
