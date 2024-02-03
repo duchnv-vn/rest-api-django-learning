@@ -1,4 +1,4 @@
 #!bin/bash
 
-docker-compose run --rm app \
+docker-compose -f docker-compose.yml run --rm app \
     sh -c "python manage.py test"

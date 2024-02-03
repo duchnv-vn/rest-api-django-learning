@@ -1,6 +1,7 @@
 API_ENDPOINTS = {
     'schema': 'schema/',
     'docs': 'docs/',
+    'health-check': 'health-check/',
     'user': {
         'base': 'users/',
         'create': 'create/',

@@ -22,13 +22,19 @@ from drf_spectacular.views import (
 from django.conf.urls.static import static
 from django.conf import settings
 from common.constant import API_ENDPOINTS
+from core.views import health_check
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path(
+        'api/' + API_ENDPOINTS['health-check'],
+        health_check,
+        name='health-check',
+    ),
+    path(
         'api/' + API_ENDPOINTS['schema'],
         SpectacularAPIView.as_view(),
-        name='api-schema'
+        name='api-schema',
     ),
     path(
         'api/' + API_ENDPOINTS['docs'],
@@ -37,19 +43,19 @@ urlpatterns = [
     ),
     path(
         'api/' + API_ENDPOINTS['user']['base'],
-        include('user.urls')
+        include('user.urls'),
     ),
     path(
         'api/' + API_ENDPOINTS['recipe']['base'],
-        include('recipe.urls')
+        include('recipe.urls'),
     ),
     path(
         'api/' + API_ENDPOINTS['tag']['base'],
-        include('tag.urls')
+        include('tag.urls'),
     ),
     path(
         'api/' + API_ENDPOINTS['ingredient']['base'],
-        include('ingredient.urls')
+        include('ingredient.urls'),
     ),
 ]
 
