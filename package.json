@@ -11,10 +11,11 @@
     "app:test": "bash ./scripts/app/app-test.sh",
     "con:rm": "docker-compose down",
     "con:build": "docker-compose build",
-    "con:run": "docker-compose up",
+    "con:dev:run": "docker-compose up",
+    "con:prd:run": "docker-compose -f docker-compose-deploy.yml up -d",
     "db:migration": "bash ./scripts/db/migration.sh",
     "db:migrate": "bash ./scripts/db/migrate.sh",
-    "db:volume:rm": "docker volume rm rest-api-django-learning_dev-db-data "
+    "db:volume:rm": "docker volume rm rest-api-django-learning_dev-db-data"
   },
   "author": "duchnv-vn",
   "license": "ISC"
