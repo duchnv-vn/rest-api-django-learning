@@ -4,8 +4,26 @@ from rest_framework import (
 )
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
+from drf_spectacular.utils import (
+    extend_schema_view,
+    extend_schema,
+    OpenApiParameter,
+    OpenApiTypes,
+)
 
 
+@extend_schema_view(
+    list=extend_schema(
+        parameters=[
+            OpenApiParameter(
+                'assigned_only',
+                OpenApiTypes.INT,
+                enum=[0, 1],
+                description='Filter by items assigned to recipes',
+            ),
+        ],
+    ),
+)
 class BaseAuthenticatedTagAndIngredientViewSet(
     mixins.DestroyModelMixin,
     mixins.UpdateModelMixin,
@@ -18,4 +36,13 @@ class BaseAuthenticatedTagAndIngredientViewSet(
 
     def get_queryset(self):
         """ Retrieve items for authenticated user """
-        return self.queryset.filter(user=self.request.user).order_by('-name')
+        queryset = self.queryset
+        assigned_only = bool(
+            int(self.request.query_params.get('assigned_only', 0))
+        )
+        if assigned_only:
+            queryset = queryset.filter(recipe__isnull=False)
+
+        return queryset.filter(
+            user=self.request.user
+        ).order_by('-name').distinct()
