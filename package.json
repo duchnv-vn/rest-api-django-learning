@@ -9,7 +9,7 @@
     "lint": "docker-compose run --rm app sh -c 'flake8'",
     "app:new": "bash ./scripts/app/new-app-start.sh",
     "app:test": "bash ./scripts/app/app-test.sh",
-    "con:rm": "docker-compose down",
+    "con:rm": "docker-compose -f docker-compose.yml down",
     "con:dev:build": "docker-compose -f docker-compose.yml build",
     "con:dev:run": "docker-compose -f docker-compose.yml up",
     "con:prd:run": "docker-compose -f docker-compose-deploy.yml up -d",
