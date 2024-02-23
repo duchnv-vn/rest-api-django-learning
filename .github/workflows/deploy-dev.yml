@@ -13,6 +13,7 @@ jobs:
       - name: Connect to VPS
         env:
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
+          SSL_FILE_PATH: .ssl/${{ secrets.SSL_FILE_NAME }}
         uses: JimCronqvist/action-ssh@master
         with:
           hosts: "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PORT }}"
@@ -23,9 +24,9 @@ jobs:
             git pull origin dev
             docker-compose -f docker-compose-deploy.yml up -d && \
             mkdir -p .ssl && \
-            touch .ssl/${{ secrets.SSL_FILE_NAME }} && \
-            cat <<EOF > .ssl/${{ secrets.SSL_FILE_NAME }} \
-            "${{ secrets.SSL_FILE_CONTENT }}" \
+            touch ${{ env.SSL_FILE_PATH }} && \
+            cat <<EOF > ${{ env.SSL_FILE_PATH }} \
+            ${{ secrets.SSL_FILE_CONTENT }} \
             EOF \
-            docker cp .ssl/${{ secrets.SSL_FILE_NAME }} rest-api-django-learning_proxy_1:/vol/static
+            docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_proxy_1:/vol/static
 
