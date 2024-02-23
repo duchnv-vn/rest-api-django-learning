@@ -24,5 +24,6 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd "./$SOURCE_DIR"
+            ls
             git pull
             docker-compose -f docker-compose-deploy.yml up -d
