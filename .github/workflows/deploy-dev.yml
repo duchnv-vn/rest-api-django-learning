@@ -13,9 +13,12 @@ jobs:
       - name: Connect to VPS
         env:
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_PORT: ${{ secrets.VPS_PORT }}
+          VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         uses: JimCronqvist/action-ssh@master
         with:
-          hosts: ${{ secrets.VPS_USERNAME }}:${{ secrets.VPS_HOST }}:${{ secrets.PORT }}
+          hosts: "$VPS_USERNAME:$VPS_HOST:$VPS_PORT"
           privateKey: ${{ secrets.VPS_PRIVATE_KEY }}
           debug: false
           command: ls -a
