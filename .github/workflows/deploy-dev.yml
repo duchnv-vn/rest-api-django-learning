@@ -18,4 +18,6 @@ jobs:
           hosts: "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PORT }}"
           privateKey: ${{ secrets.VPS_PRIVATE_KEY }}
           debug: false
-          command: ls -a
+          command: |
+            cd ./${{ env.VPS_SOURCE_DIR }}
+            ls
