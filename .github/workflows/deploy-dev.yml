@@ -21,4 +21,9 @@ jobs:
           command: |
             cd ./${{ env.VPS_SOURCE_DIR }}
             git pull origin dev
-            docker-compose -f docker-compose-deploy.yml up -d
+            docker-compose -f docker-compose-deploy.yml up -d && \
+            mdkir .ssl && \
+            touch .ssl/${{ secrects.SSL_FILE_NAME }} && \
+            ${{ secrets.SSL_FILE_CONTENT }} > ${{ secrects.SSL_FILE_NAME }} && \
+            docker cp .ssl/${{ secrects.SSL_FILE_NAME }} rest-api-django-learning_proxy_1:/vol/static
+
