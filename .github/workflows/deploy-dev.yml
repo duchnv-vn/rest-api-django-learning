@@ -1,0 +1,24 @@
+name: Develop environment deployment
+
+on:
+  push:
+    branches:
+      - "dev"
+
+jobs:
+  vps-pull:
+    name: VPS pulls and run Docker container
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Connect to VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: cd ${{ secrets.SOURCE_DIR }}
+      - name: Git pulling
+        run: git pull
+      - name: Regenerate Docker container
+        run: docker-compose -f docker-compose-deploy.yml up -d
