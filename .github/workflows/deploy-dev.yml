@@ -24,6 +24,6 @@ jobs:
             docker-compose -f docker-compose-deploy.yml up -d && \
             mkdir -p .ssl && \
             touch .ssl/${{ secrets.SSL_FILE_NAME }} && \
-            "${{ secrets.SSL_FILE_CONTENT }}" > "${{ secrets.SSL_FILE_NAME }}" && \
+            ${{ secrets.SSL_FILE_CONTENT }} > .ssl/${{ secrets.SSL_FILE_NAME }} && \
             docker cp .ssl/${{ secrets.SSL_FILE_NAME }} rest-api-django-learning_proxy_1:/vol/static
 
