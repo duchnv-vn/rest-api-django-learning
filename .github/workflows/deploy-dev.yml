@@ -18,7 +18,7 @@ jobs:
           VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
         uses: JimCronqvist/action-ssh@master
         with:
-          hosts: "${{ secrets.VPS_USERNAME }}:${{ secrets.VPS_HOST }}:${{ secrets.VPS_PORT }}"
+          hosts: "${{ env.VPS_USERNAME }}:${{ env.VPS_HOST }}:${{ env.VPS_PORT }}"
           privateKey: ${{ secrets.VPS_PRIVATE_KEY }}
           debug: false
           command: ls -a
