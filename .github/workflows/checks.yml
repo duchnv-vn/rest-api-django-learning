@@ -1,6 +1,10 @@
 name: Checks
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - "dev"
+      - "master"
 
 jobs:
   test-lint:
