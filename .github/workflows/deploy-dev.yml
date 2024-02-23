@@ -12,14 +12,11 @@ jobs:
     steps:
       - name: Connect to VPS
         env:
-          VPS_HOST: ${{ secrets.VPS_HOST }}
-          VPS_USERNAME: ${{ secrets.VPS_USERNAME }}
-          VPS_PASSWORD: ${{ secrets.VPS_PASSWORD }}
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
-        uses: appleboy/ssh-action@v1.0.3
+        uses: garygrossgarten/github-action-ssh@0.7.0
         with:
-          host: $VPS_HOST
-          username: $VPS_USERNAME
-          password: $VPS_PASSWORD
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          password: ${{ secrets.VPS_PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: whoami
+          command: ls -a
