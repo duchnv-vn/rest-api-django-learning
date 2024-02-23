@@ -16,6 +16,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - SECRET_KEY=${DJANGO_SECRET_KEY}
       - ALLOWED_HOSTS=${DJANGO_ALLOWED_HOSTS}
+      - SSL_FILE_NAME=${SSL_FILE_NAME}
 
   db:
     image: postgres:13-alpine
