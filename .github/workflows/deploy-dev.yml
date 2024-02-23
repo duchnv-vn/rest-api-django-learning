@@ -12,16 +12,12 @@ jobs:
     steps:
       - name: Connect to VPS
         env:
-          VPS_HOST: ${{ secrets.HOST }}
-          VPS_USERNAME: ${{ secrets.USERNAME }}
-          VPS_PASSWORD: ${{ secrets.PASSWORD }}
-          VPS_PORT: ${{ secrets.PORT }}
           SOURCE_DIR: ${{ secrets.SOURCE_DIR }}
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: $VPS_HOST
-          username: $VPS_USERNAME
-          password: $VPS_PASSWORD
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
             cd "./$SOURCE_DIR"
