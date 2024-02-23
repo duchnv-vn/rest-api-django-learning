@@ -13,7 +13,7 @@ jobs:
       - name: Connect to VPS
         env:
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
-        uses: garygrossgarten/github-action-ssh@0.7.0
+        uses: JimCronqvist/action-ssh@master
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USERNAME }}
