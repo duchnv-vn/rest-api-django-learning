@@ -8,7 +8,7 @@ on:
 jobs:
   vps-pull:
     name: VPS pulls and run Docker container
-    runs-on: bash
+    runs-on: ubuntu-20.04
     steps:
       - name: Connect to VPS
         env:
