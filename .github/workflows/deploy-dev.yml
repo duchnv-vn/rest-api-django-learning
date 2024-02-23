@@ -27,5 +27,6 @@ jobs:
             cat <<EOF > .ssl/${{ secrets.SSL_FILE_NAME }} && \
             ${{ secrets.SSL_FILE_CONTENT }} && \
             EOF \
+            \
             docker cp .ssl/${{ secrets.SSL_FILE_NAME }} rest-api-django-learning_proxy_1:/vol/static
 
