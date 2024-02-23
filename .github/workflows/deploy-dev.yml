@@ -15,8 +15,7 @@ jobs:
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
         uses: JimCronqvist/action-ssh@master
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USERNAME }}
-          password: ${{ secrets.VPS_PASSWORD }}
-          port: ${{ secrets.PORT }}
+          hosts: ${{ secrets.VPS_USERNAME }}:${{ secrets.VPS_HOST }}:${{ secrets.PORT }}
+          privateKey: ${{ VPS_PRIVATE_KEY }}
+          debug: false
           command: ls -a
