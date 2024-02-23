@@ -19,3 +19,7 @@ API_ENDPOINTS = {
         'base': 'ingredients/',
     }
 }
+
+APP_URLS = {
+    'ssl': '.well-known/acme-challenge/',
+}

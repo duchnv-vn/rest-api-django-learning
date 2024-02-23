@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import os
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import (
@@ -21,8 +22,8 @@ from drf_spectacular.views import (
 )
 from django.conf.urls.static import static
 from django.conf import settings
-from common.constant import API_ENDPOINTS
 from core.views import health_check
+from common.constant import API_ENDPOINTS, APP_URLS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -58,6 +59,11 @@ urlpatterns = [
         include('ingredient.urls'),
     ),
 ]
+
+urlpatterns += static(
+    APP_URLS['ssl'] + os.environ.get('SSL_FILE_NAME'),
+    document_root=settings.STATIC_ROOT,
+)
 
 
 if settings.DEBUG:
