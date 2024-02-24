@@ -21,10 +21,10 @@ jobs:
           privateKey: ${{ secrets.VPS_PRIVATE_KEY }}
           debug: false
           command: |
-            cd ./${{ env.VPS_SOURCE_DIR }}
-            git pull origin dev
-            docker-compose -f docker-compose-deploy.yml up -d
-            mkdir -p ${{ env.SSL_DIR }}
-            touch ${{ env.SSL_FILE_PATH }}
-            > ${{ env.SSL_FILE_PATH }} cat <<< ${{ secrets.SSL_FILE_CONTENT }}
+            cd ./${{ env.VPS_SOURCE_DIR }} && \
+            git pull origin dev && \
+            docker-compose -f docker-compose-deploy.yml up -d && \
+            mkdir -p ${{ env.SSL_DIR }} && \
+            touch ${{ env.SSL_FILE_PATH }} && \
+            > ${{ env.SSL_FILE_PATH }} cat <<< ${{ secrets.SSL_FILE_CONTENT }} && \
             docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_app_1:/vol/web/static
