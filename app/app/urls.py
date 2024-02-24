@@ -60,11 +60,6 @@ urlpatterns = [
     ),
 ]
 
-# urlpatterns += static(
-#     APP_URLS['ssl'] + os.environ.get("SSL_FILE_NAME", ""),
-#     document_root=settings.STATIC_ROOT,
-# )
-
 
 if settings.DEBUG:
     urlpatterns += static(
