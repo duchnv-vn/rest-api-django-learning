@@ -28,5 +28,5 @@ jobs:
             mkdir -p ${{ env.SSL_DIR }}
             touch ${{ env.SSL_FILE_PATH }}
             > ${{ env.SSL_FILE_PATH }} cat <<< ${{ secrets.SSL_FILE_CONTENT }}
-            docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_proxy-1:/vol/static
-            echo "Success running dev deployment"
+            docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_proxy_1:/vol/static
+            echo "===== Success running dev deployment ====="
