@@ -22,7 +22,7 @@ from drf_spectacular.views import (
 from django.conf.urls.static import static
 from django.conf import settings
 from core.views import health_check
-from common.constant import API_ENDPOINTS, APP_URLS
+from common.constant import API_ENDPOINTS
 
 urlpatterns = [
     path('admin/', admin.site.urls),
