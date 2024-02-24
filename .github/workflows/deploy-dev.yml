@@ -23,6 +23,7 @@ jobs:
           command: |
             cd ./${{ env.VPS_SOURCE_DIR }}
             git pull origin dev
+            docker-compose -f docker-compose-deploy.yml build
             docker-compose -f docker-compose-deploy.yml up -d
             mkdir -p ${{ env.SSL_DIR }}
             touch ${{ env.SSL_FILE_PATH }}
