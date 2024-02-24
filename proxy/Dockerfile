@@ -19,6 +19,8 @@ RUN mkdir -p /vol/static && \
 
 VOLUME /vol/static
 
+RUN mkdir -p /vol/static/.well-known/acme-challenge
+
 USER nginx
 
 CMD [ "/run.sh" ]

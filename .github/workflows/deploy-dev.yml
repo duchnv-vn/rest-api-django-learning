@@ -27,4 +27,5 @@ jobs:
             mkdir -p ${{ env.SSL_DIR }}
             touch ${{ env.SSL_FILE_PATH }}
             > ${{ env.SSL_FILE_PATH }} cat <<< ${{ secrets.SSL_FILE_CONTENT }}
-            docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_app_1:/vol/web/static
+            docker cp ${{ env.SSL_FILE_PATH }} rest-api-django-learning_poxy_1:/vol/static/.well-known/acme-challenge
+            echo "Success running dev deployment"
