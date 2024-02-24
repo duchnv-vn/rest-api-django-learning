@@ -6,7 +6,7 @@ server {
     }
 
     location /.well-known/acme-challenge {
-        alias /vol/static/static;
+        alias /vol/static/.ssl;
     }
 
     location / {
