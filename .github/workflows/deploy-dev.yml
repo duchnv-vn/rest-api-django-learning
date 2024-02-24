@@ -28,7 +28,7 @@ jobs:
             mkdir -p ${{ env.SSL_DIR }}
             touch ${{ env.SSL_FILE_PATH }}
             > ${{ env.SSL_FILE_PATH }} cat <<< ${{ secrets.SSL_FILE_CONTENT }}
-            docker container create --name temp -v rest-api-django-learning_static-data:/vol/static/.well-known/acme-challenge busybox
+            docker container create --name temp -v rest-api-django-learning_static-data:/.well-known/acme-challenge busybox
             docker cp ${{ env.SSL_FILE_PATH }} temp:/data
             docker rm temp
             echo "Success running dev deployment"
