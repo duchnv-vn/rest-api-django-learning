@@ -4,6 +4,7 @@ services:
   app:
     depends_on:
       - db
+      - proxy
     build:
       context: .
     restart: always
@@ -28,16 +29,20 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
 
   proxy:
-    depends_on:
-      - app
-    build:
-      context: ./proxy
-    restart: always
+    image: nginx:1.23
+    # depends_on:
+    #   - app
+    # build:
+    #   context: ./proxy
+    # restart: always
     ports:
-      - 80:80
       - 443:443
+      - 80:80
     volumes:
       - static-data:/vol/static
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl/site.crt:/etc/ssl/certs/codesomething.site.crt
+      - ./ssl/site.dec.key:/etc/ssl/private/codesomething.site.key
 
 volumes:
   postgre-data:
