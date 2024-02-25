@@ -15,7 +15,6 @@ jobs:
           VPS_SOURCE_DIR: ${{ secrets.VPS_SOURCE_DIR }}
           SSL_DIR: .ssl
           SSL_FILE_PATH: .ssl/${{ secrets.SSL_FILE_NAME }}
-          ENV: DB_HOST=${{ secrets.DB_HOST }}\nDB_NAME=${{ secrets.DB_NAME }}\nDB_USER=${{ secrets.DB_USER }}\nDB_PASSWORD=${{ secrets.DB_PASSWORD }}\nSECRET_KEY=${{ secrets.SECRET_KEY }}\nALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}\n
         uses: JimCronqvist/action-ssh@master
         with:
           hosts: "${{ secrets.VPS_USERNAME }}@${{ secrets.VPS_HOST }}:${{ secrets.VPS_PORT }}"
@@ -25,7 +24,14 @@ jobs:
             cd ./${{ env.VPS_SOURCE_DIR }}
             git pull origin dev
             touch .env
-            > .env cat <<< ${{ env.ENV }}
+            <<EOF>> .env cat
+            DB_HOST=${{ secrets.DB_HOST }}
+            DB_NAME=${{ secrets.DB_NAME }}
+            DB_USER=${{ secrets.DB_USER }}
+            DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+            SECRET_KEY=${{ secrets.SECRET_KEY }}
+            ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
+            EOF
             docker-compose -f docker-compose-deploy.yml build
             docker-compose -f docker-compose-deploy.yml up -d
             # mkdir -p ${{ env.SSL_DIR }}
