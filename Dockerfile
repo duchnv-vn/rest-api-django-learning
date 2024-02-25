@@ -7,7 +7,6 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./scripts /scripts
 COPY ./app /app
-COPY ./scripts/run.sh /run.sh
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
@@ -36,4 +35,4 @@ ENV PATH="/scripts:/py/bin:$PATH"
 
 USER django-user
 
-CMD ["run.sh"]
+CMD ["/scripts/run.sh"]
