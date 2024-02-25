@@ -7,6 +7,7 @@ COPY ./requirements.txt /tmp/requirements.txt
 COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./scripts /scripts
 COPY ./app /app
+COPY ./scripts/run.sh /run.sh
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
