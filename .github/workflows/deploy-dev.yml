@@ -23,7 +23,8 @@ jobs:
           command: |
             cd ./${{ env.VPS_SOURCE_DIR }}
             git pull origin dev
-            > DB_HOST=${{ secrets.DB_HOST }}\nDB_NAME=${{ secrets.DB_NAME }}\nDB_USER=${{ secrets.DB_USER }}\nDB_PASSWORD=${{ secrets.DB_PASSWORD }}\nSECRET_KEY=${{ secrets.SECRET_KEY }}\nALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}\n cat <<< .env
+            touch .env
+            > "DB_HOST=${{ secrets.DB_HOST }}\nDB_NAME=${{ secrets.DB_NAME }}\nDB_USER=${{ secrets.DB_USER }}\nDB_PASSWORD=${{ secrets.DB_PASSWORD }}\nSECRET_KEY=${{ secrets.SECRET_KEY }}\nALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}\n" cat <<< .env
             docker-compose -f docker-compose-deploy.yml build
             docker-compose -f docker-compose-deploy.yml up -d
             # mkdir -p ${{ env.SSL_DIR }}
