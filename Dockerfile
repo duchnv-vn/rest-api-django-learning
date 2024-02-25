@@ -8,8 +8,8 @@ COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./scripts /scripts
 COPY ./app /app
 WORKDIR /app
-EXPOSE 8000
-EXPOSE 8001
+EXPOSE 80
+EXPOSE 443
 
 ARG DEV=false
 
