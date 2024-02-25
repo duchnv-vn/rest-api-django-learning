@@ -1,9 +1,6 @@
 server {
     listen ${LISTEN_PORT};
     listen ${HTTPS_LISTEN_PORT} ssl;
-    server_name         codesomething.site;
-    ssl_certificate /etc/ssl/certs/codesomething.site.crt;
-    ssl_certificate_key /etc/ssl/private/codesomething.site.key;
 
 
     location /.well-known/acme-challenge {
