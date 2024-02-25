@@ -29,8 +29,8 @@ jobs:
             DB_NAME=${{ secrets.DB_NAME }}
             DB_USER=${{ secrets.DB_USER }}
             DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-            SECRET_KEY=${{ secrets.SECRET_KEY }}
-            ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
+            SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+            ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
             EOF
             docker-compose -f docker-compose-deploy.yml build
             docker-compose -f docker-compose-deploy.yml up -d
