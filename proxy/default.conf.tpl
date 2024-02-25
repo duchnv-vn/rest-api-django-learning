@@ -1,5 +1,6 @@
 server {
     listen ${LISTEN_PORT};
+    listen ${HTTPS_LISTEN_PORT} ssl;
 
     location /.well-known/acme-challenge {
         alias /vol/static/static;
