@@ -6,6 +6,7 @@ COPY ./uwsgi_params /etc/nginx/uwsgi_params
 COPY ./run.sh /run.sh
 
 ENV LISTEN_PORT=8000
+ENV HTTPS_LISTEN_PORT=8001
 ENV APP_HOST=app
 ENV APP_PORT=9000
 
