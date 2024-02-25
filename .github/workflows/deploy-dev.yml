@@ -23,6 +23,7 @@ jobs:
           command: |
             cd ./${{ env.VPS_SOURCE_DIR }}
             git pull origin dev
+            rm .env
             touch .env
             <<EOF>> .env cat
             DB_HOST=${{ secrets.DB_HOST }}
