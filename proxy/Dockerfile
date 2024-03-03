@@ -3,7 +3,7 @@ LABEL maintainer="huynhnguyenvietduc@gmail.com"
 
 # COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
 COPY ./nginx.conf.tpl /etc/nginx/nginx.conf.tpl
-# COPY ./uwsgi_params /etc/nginx/uwsgi_params
+COPY ./uwsgi_params /etc/nginx/uwsgi_params
 COPY ./run.sh /run.sh
 
 ENV LISTEN_PORT=80

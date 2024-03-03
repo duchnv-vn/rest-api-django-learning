@@ -26,17 +26,9 @@ http {
     }
 
     location / {
-      proxy_pass 0.0.0.0:${LISTEN_PORT};
-      proxy_set_header X-Real-IP  $remote_addr;
-      proxy_set_header X-Forwarded-For $remote_addr;
-      proxy_set_header Host $host;
-      proxy_set_header X-Forwarded-Proto $scheme;
-      proxy_redirect 0.0.0.0:${LISTEN_PORT} $scheme://$http_host/;
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection $connection_upgrade;
-      proxy_read_timeout 20d;
-      proxy_buffering off;
+      uwsgi_pass               ${APP_HOST}:${APP_PORT};
+      include                  /etc/nginx/uwsgi_params;
+      client_max_body_size     2M;
     }
    }
 }
