@@ -1,19 +1,12 @@
 events {}
 
-http {
-  map $http_upgrade $connection_upgrade {
-      default upgrade;
-      ''      close;
-  }
-
-  server {
+server {
     listen 80;
-    server_name codesomething.site www.codesomething.site;
-    return 301 https://codesomething.site$request_uri;
-  }
-
-  server {
     listen 443 ssl;
+    if ($scheme = http) {
+      return 301 https://codesomething.site$request_uri;
+    }
+
     server_name codesomething.site www.codesomething.site;
 
     ssl_certificate /etc/ssl/certs/codesomething.site.pem;
@@ -31,4 +24,3 @@ http {
       client_max_body_size     2M;
     }
   }
-}
