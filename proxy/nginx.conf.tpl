@@ -1,11 +1,11 @@
-events {}
+server {
+  listen 80;
+  server_name codesomething.site www.codesomething.site;
+  return 301 https://codesomething.site$request_uri;
+}
 
 server {
-    listen 80;
     listen 443 ssl;
-    if ($scheme = http) {
-      return 301 https://codesomething.site$request_uri;
-    }
 
     server_name codesomething.site www.codesomething.site;
 
