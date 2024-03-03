@@ -13,7 +13,7 @@ server {
     ssl_certificate_key /ssl/private/codesomething.site.key;
     ssl_password_file /ssl/codesomething.site.ssl.pass;
 
-    access_log /var/log/nginx/data-access.log combined;
+    access_log /var/log/nginx/access.log combined;
 
     location /static {
       alias /vol/static;
