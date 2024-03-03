@@ -9,8 +9,8 @@ server {
 
     server_name codesomething.site www.codesomething.site;
 
-    ssl_certificate /etc/ssl/certs/codesomething.site.pem;
-    ssl_certificate_key /etc/ssl/private/codesomething.site.key;
+    ssl_certificate /ssl/certs/codesomething.site.pem;
+    ssl_certificate_key /ssl/private/codesomething.site.key;
 
     access_log /var/log/nginx/data-access.log combined;
 

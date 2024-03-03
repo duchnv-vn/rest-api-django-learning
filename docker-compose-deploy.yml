@@ -39,6 +39,7 @@ services:
       - 80:80
     volumes:
       - static-data:/vol/static/
+      - /etc/ssl:/ssl/
 
 volumes:
   postgre-data:
