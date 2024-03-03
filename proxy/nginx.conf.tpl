@@ -11,6 +11,7 @@ server {
 
     ssl_certificate /ssl/certs/codesomething.site.pem;
     ssl_certificate_key /ssl/private/codesomething.site.key;
+    ssl_password_file /ssl/codesomething.site.ssl.pass;
 
     access_log /var/log/nginx/data-access.log combined;
 
