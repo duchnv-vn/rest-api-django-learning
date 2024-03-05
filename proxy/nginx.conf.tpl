@@ -28,7 +28,6 @@ server {
     }
 
     location / {
-      proxy_pass               http://${DOMAIN_NAME};
       uwsgi_pass               ${APP_HOST}:${APP_PORT};
       include                  /etc/nginx/uwsgi_params;
       client_max_body_size     2M;
