@@ -12,7 +12,6 @@
     "con:rm": "docker-compose -f docker-compose.yml down",
     "con:dev:build": "docker-compose -f docker-compose.yml build",
     "con:dev:run": "docker-compose -f docker-compose.yml up",
-    "con:prd:run": "docker-compose -f docker-compose-deploy.yml up -d",
     "db:migration": "bash ./scripts/db/migration.sh",
     "db:migrate": "bash ./scripts/db/migrate.sh",
     "db:volume:rm": "docker volume rm rest-api-django-learning_dev-db-data"

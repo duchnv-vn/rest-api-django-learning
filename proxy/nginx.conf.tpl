@@ -1,11 +1,21 @@
 server {
   listen 80;
+  listen [::]:80;
   server_name ${SERVER_NAME} www.${SERVER_NAME};
-  return 302 https://${SERVER_NAME}$request_uri;
+  server_tokens off;
+
+  location /.well-known/acme-challenge/ {
+      root /var/www/certbot;
+  }
+
+  location / {
+    return 301 https://${SERVER_NAME}$request_uri;
+  }
 }
 
 server {
     listen 443 ssl;
+    listen [::]:443 ssl;
 
     server_name ${SERVER_NAME} www.${SERVER_NAME};
 
