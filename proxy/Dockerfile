@@ -6,12 +6,12 @@ COPY ./nginx.conf.tpl /etc/nginx/nginx.conf.tpl
 COPY ./uwsgi_params /etc/nginx/uwsgi_params
 COPY ./run.sh /run.sh
 
-ENV LISTEN_PORT=80
-ENV HTTPS_LISTEN_PORT=443
 ENV APP_HOST=app
 ENV APP_PORT=9000
 ENV SERVER_NAME=codesomething.site
-ENV SERVER_NAMES="$SERVER_NAME www.$SERVER_NAME"
+ENV SSL_CERT_FILE_PATH=/ssl/certs/codesomething.site.pem
+ENV SSL_CERT_PRIVATE_KEY_FILE_PATH=/ssl/private/codesomething.site.key
+ENV SSL_CERT_PASSWORD_FILE_PATH=/ssl/codesomething.site.ssl.pass
 
 USER root
 

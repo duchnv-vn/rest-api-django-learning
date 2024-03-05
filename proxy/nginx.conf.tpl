@@ -1,26 +1,24 @@
 server {
   listen 80;
-  server_name codesomething.site www.codesomething.site;
-  return 301 https://codesomething.site$request_uri;
+  server_name ${SERVER_NAME} www.${SERVER_NAME};
+  return 302 https://${SERVER_NAME}$request_uri;
 }
 
 server {
     listen 443 ssl;
 
-    server_name codesomething.site www.codesomething.site;
+    server_name ${SERVER_NAME} www.${SERVER_NAME};
 
-    ssl_certificate /ssl/certs/codesomething.site.pem;
-    ssl_certificate_key /ssl/private/codesomething.site.key;
-    ssl_password_file /ssl/codesomething.site.ssl.pass;
-
-    access_log /var/log/nginx/access.log combined;
+    ssl_certificate ${SSL_CERT_FILE_PATH};
+    ssl_certificate_key ${SSL_CERT_PRIVATE_KEY_FILE_PATH};
+    ssl_password_file ${SSL_CERT_PASSWORD_FILE_PATH};
 
     location /static {
       alias /vol/static;
     }
 
     location / {
-      uwsgi_pass               app:9000;
+      uwsgi_pass               ${APP_HOST}:${APP_PORT};
       include                  /etc/nginx/uwsgi_params;
       client_max_body_size     2M;
     }
