@@ -40,7 +40,7 @@ services:
     volumes:
       - static-data:/vol/static/
       - /etc/ssl:/ssl/
-      - /etc/nginx/conf.d/:/etc/nginx/conf.d/:ro
+      # - /etc/nginx/conf.d/:/etc/nginx/conf.d/:ro
       - ./certbot/www/:/var/www/certbot/:ro
 
   certbot:
