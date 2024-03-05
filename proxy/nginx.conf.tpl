@@ -14,10 +14,10 @@ server {
 }
 
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
+    listen 443 default_server ssl http2;
+    listen [::]:443 ssl http2;
 
-    server_name ${SERVER_NAME} www.${SERVER_NAME};
+    server_name ${DOMAIN_NAME} www.${DOMAIN_NAME};
 
     ssl_certificate ${SSL_CERT_FILE_PATH};
     ssl_certificate_key ${SSL_CERT_PRIVATE_KEY_FILE_PATH};
@@ -28,6 +28,7 @@ server {
     }
 
     location / {
+      proxy_pass               http://${DOMAIN_NAME};
       uwsgi_pass               ${APP_HOST}:${APP_PORT};
       include                  /etc/nginx/uwsgi_params;
       client_max_body_size     2M;
