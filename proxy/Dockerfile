@@ -9,9 +9,8 @@ COPY ./run.sh /run.sh
 ENV APP_HOST=app
 ENV APP_PORT=9000
 ENV DOMAIN_NAME=codesomething.site
-ENV SSL_CERT_FILE_PATH=/ssl/certs/codesomething.site.pem
-ENV SSL_CERT_PRIVATE_KEY_FILE_PATH=/ssl/private/codesomething.site.key
-ENV SSL_CERT_PASSWORD_FILE_PATH=/ssl/codesomething.site.ssl.pass
+ENV SSL_CERT_FILE_PATH=/etc/letsencrypt/live/codesomething.site/fullchain.pem
+ENV SSL_CERT_PRIVATE_KEY_FILE_PATH=/etc/letsencrypt/live/codesomething.site/privkey.pem
 
 USER root
 

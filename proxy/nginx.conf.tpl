@@ -21,7 +21,6 @@ server {
 
     ssl_certificate ${SSL_CERT_FILE_PATH};
     ssl_certificate_key ${SSL_CERT_PRIVATE_KEY_FILE_PATH};
-    ssl_password_file ${SSL_CERT_PASSWORD_FILE_PATH};
 
     location /static {
       alias /vol/static;
