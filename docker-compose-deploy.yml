@@ -40,14 +40,14 @@ services:
     volumes:
       - static-data:/vol/static/
       - /etc/ssl:/ssl/
-      # - /etc/nginx/conf.d/:/etc/nginx/conf.d/:ro
-      # - ./certbot/www/:/var/www/certbot/:ro
+      - /etc/nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./certbot/www/:/var/www/certbot/:ro
 
-  # certbot:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
 volumes:
   postgre-data:
