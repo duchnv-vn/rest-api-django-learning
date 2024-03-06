@@ -28,16 +28,23 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
 
   proxy:
+    image: nginx:latest
     depends_on:
       - app
     build:
       context: ./proxy
     restart: always
     ports:
-      - 80:80
       - 443:443
+      - 80:80
     volumes:
-      - static-data:/vol/static
+      - static-data:/vol/static/
+      - /etc/letsencrypt:/letsencrypt/
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt/
 
 volumes:
   postgre-data:

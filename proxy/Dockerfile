@@ -1,14 +1,16 @@
 FROM nginxinc/nginx-unprivileged:1-alpine
 LABEL maintainer="huynhnguyenvietduc@gmail.com"
 
-COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
+
+COPY ./nginx.conf.tpl /etc/nginx/nginx.conf.tpl
 COPY ./uwsgi_params /etc/nginx/uwsgi_params
 COPY ./run.sh /run.sh
 
-ENV LISTEN_PORT=80
-ENV HTTPS_LISTEN_PORT=443
 ENV APP_HOST=app
 ENV APP_PORT=9000
+ENV DOMAIN_NAME=codesomething.site
+ENV SSL_CERT_FILE_PATH=/letsencrypt/live/codesomething.site/fullchain.pem
+ENV SSL_CERT_PRIVATE_KEY_FILE_PATH=/letsencrypt/live/codesomething.site/privkey.pem
 
 USER root
 
@@ -20,6 +22,6 @@ RUN mkdir -p /vol/static && \
 
 VOLUME /vol/static
 
-USER nginx
+USER proxy-user
 
 CMD [ "/run.sh" ]
