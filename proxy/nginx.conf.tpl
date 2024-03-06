@@ -4,13 +4,7 @@ server {
   server_name ${DOMAIN_NAME} www.${DOMAIN_NAME};
   server_tokens off;
 
-  location /.well-known/acme-challenge/ {
-      root /var/www/certbot;
-  }
-
-  location / {
-    return 301 https://${DOMAIN_NAME}$request_uri;
-  }
+  return 301 https://${DOMAIN_NAME}$request_uri;
 }
 
 server {

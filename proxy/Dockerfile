@@ -22,6 +22,6 @@ RUN mkdir -p /vol/static && \
 
 VOLUME /vol/static
 
-# USER nginx
+# USER proxy-user
 
 CMD [ "/run.sh" ]

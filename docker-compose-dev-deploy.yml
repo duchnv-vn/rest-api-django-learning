@@ -40,13 +40,11 @@ services:
     volumes:
       - static-data:/vol/static/
       - /etc/letsencrypt:/letsencrypt/
-  #     - ./certbot/www/:/var/www/certbot/:ro
 
-  # certbot:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/:rw
-  #     - ./certbot/conf/:/etc/letsencrypt/:rw
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt/
 
 volumes:
   postgre-data:

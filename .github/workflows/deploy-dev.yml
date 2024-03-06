@@ -34,6 +34,6 @@ jobs:
             DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
             DJANGO_ALLOWED_HOSTS=${{ secrets.DJANGO_ALLOWED_HOSTS }}
             EOF
-            docker-compose -f docker-compose-deploy.yml build
-            docker-compose -f docker-compose-deploy.yml up -d
+            docker-compose -f docker-compose-dev-deploy.yml build
+            docker-compose -f docker-compose-dev-deploy.yml up -d
             echo "===== Success running dev deployment ====="
