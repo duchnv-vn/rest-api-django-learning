@@ -2,9 +2,8 @@ server {
   listen 80;
   listen [::]:80;
   server_name ${DOMAIN_NAME} www.${DOMAIN_NAME};
-  server_tokens off;
 
-  return 301 https://${DOMAIN_NAME}$request_uri;
+  return 301 https://$host$request_uri;
 }
 
 server {
